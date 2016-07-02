@@ -1,0 +1,20 @@
+import Ember from 'ember';
+import ValidationEngine from 'ghost-admin/mixins/validation-engine';
+
+const {
+    computed,
+    isBlank,
+    Object: EmberObject
+} = Ember;
+
+export default EmberObject.extend(ValidationEngine, {
+    // values entered here will act as defaults
+    url: '',
+
+    validationType: 'slackIntegration',
+
+    isActive: computed('url', function () {
+        let url = this.get('url');
+        return !isBlank(url);
+    })
+});
